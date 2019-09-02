@@ -1,8 +1,13 @@
 import React from 'react'
-
+import Log from '../log/log'
 const Output = () => {
     
-    return (<textarea id="output"></textarea>)
+    return (
+    <div className="outputContainer">
+        <textarea id="output"></textarea>
+        <Log />
+    </div>
+    )
 }
 
 
