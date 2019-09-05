@@ -5,6 +5,7 @@ const FormatButtons = () => {
   const context = useContext(Context);
 
   const submitFormat = async () => {
+    context.setVisible(true);
     const results = await fetch("https://mush-format-api.herokuapp.com", {
       method: "post",
       headers: {
@@ -15,6 +16,7 @@ const FormatButtons = () => {
     });
     const data = await results.json();
     context.setOutput(data.data.text);
+    context.setVisible(false);
   };
 
   const handleReset = () => {

@@ -7,6 +7,7 @@ export const Provider = props => {
   const [text, setText] = useState(initialText);
   const [output, setOutput] = useState(initialOutput);
   const [log, setLog] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   const FormatContext = {
     text,
@@ -14,7 +15,9 @@ export const Provider = props => {
     output,
     setOutput,
     log,
-    setLog
+    setLog,
+    visible,
+    setVisible
   };
 
   return <Context.Provider value={FormatContext}>{children}</Context.Provider>;
