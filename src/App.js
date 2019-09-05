@@ -42,7 +42,7 @@ function App() {
               <Input />
               <Output />
             </div>
-            <Modal>
+            <Modal width={"30%"} height={"50%"}>
               <img
                 alt="Spinning Gear"
                 src={Gear}

@@ -2,14 +2,16 @@ import React, { useContext } from "react";
 import { Context } from "../context/Context";
 
 const Modal = props => {
-  const { children } = props;
+  const { width, height, children } = props;
   const context = useContext(Context);
   return (
     <div
       className="modalBG"
       style={{ display: context.visible ? "flex" : "none" }}
     >
-      <div className="modal">{children}</div>
+      <div className="modal" style={{ width, height }}>
+        {children}
+      </div>
     </div>
   );
 };
