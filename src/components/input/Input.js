@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react'
-import OpenBox from '../openmenu/open'
-import FormatButtons from '../formatButtons/formatButtons'
+import React, { useContext } from "react";
+import OpenBox from "../openmenu/open";
+import FormatButtons from "../formatButtons/formatButtons";
+import { Context } from "../context/Context";
 
 const placeHolder = `
 /*
@@ -24,22 +25,23 @@ please leave an issue on the github repository.
 &cmd.example me = $+world:
     @pemit me = "My first formatted bit of code! 
         you're awesome! - me"
-`
+`;
 
-const Input = (props) => {
+const Input = () => {
+  const context = useContext(Context);
+  context.setText(placeHolder);
 
-    useEffect( () => {
-        const input = document.getElementById("input");
-        input.value = placeHolder;
-    },[]);
-
-    return (
-        <div className="inputContainer">
-            <OpenBox />
-            <textarea id="input"></textarea>
-            <FormatButtons />
-        </div> 
-    )
-}
+  return (
+    <div className="inputContainer">
+      <OpenBox />
+      <textarea
+        id="input"
+        onChange={e => context.setText(e.target.value)}
+        value={context.text}
+      ></textarea>
+      <FormatButtons />
+    </div>
+  );
+};
 
 export default Input;

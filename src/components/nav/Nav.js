@@ -6,7 +6,7 @@ const Nav = () => {
         <nav className ="nav">
            <img src={Settings} alt="Settings gear" />
             <p>Mush Formatter</p>
-            <img src={Git} alt="Github"/>
+            <a href="https://github.com/digibeardev/mush-format" target="_new"><img src={Git} alt="Github"/></a>
 
         </nav>
     )
