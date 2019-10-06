@@ -1,12 +1,10 @@
 import React from "react";
 import "./App.css";
-import Gear from "./components/nav/settings.svg";
 import Nav from "./components/nav/Nav";
 import Input from "./components/input/Input";
 import Output from "./components/output/output";
 import { Provider } from "./components/context/Context";
-import Modal from "./components/modal/Modal";
-
+import Footer from "./components/footer/footer";
 const placeHolder = `
 /*
 ###########################################################
@@ -42,14 +40,7 @@ function App() {
               <Input />
               <Output />
             </div>
-            <Modal width={"30%"} height={"50%"}>
-              <img
-                alt="Spinning Gear"
-                src={Gear}
-                className="rotate"
-                style={{ width: "100px", height: "100px", margin: "auto" }}
-              />
-            </Modal>
+            <Footer />
           </Provider>
         </div>
       </div>

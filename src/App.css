@@ -49,7 +49,7 @@ body {
   top: 60px;
   max-width: 1280px;
   width: 100%;
-  height: 100vh;
+  height: 85%;
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
@@ -64,11 +64,11 @@ body {
 
 #input {
   font-family: "Source Code Pro", monospace;
-  font-size: 0.9rem;
+  font-size: 0.76rem;
   padding: 30px;
   width: 100%;
   height: 100%;
-
+  position: relative;
   grid-area: input;
   background-color: #656565;
   resize: none;
@@ -112,18 +112,7 @@ body {
   display: flex;
   justify-content: center;
   background-color: #656565;
-  height: 25%;
-}
-
-#formatButton {
-  font-size: 1rem;
-  width: 170px;
-  height: 40px;
-  background-color: #2a2a2a;
-  color: #e1e1e1;
-  border: none;
-  outline: none;
-  margin-right: 40px;
+  height: 100px;
 }
 
 #resetButton {
@@ -131,6 +120,8 @@ body {
   width: 170px;
   height: 40px;
   background-color: #2a2a2a;
+  margin-left: auto;
+  margin-right: 20px;
   color: #e1e1e1;
   border: none;
   outline: none;
@@ -142,10 +133,10 @@ body {
 
 #output {
   font-family: "Source Code Pro", monospace;
-  font-size: 0.9rem;
+  font-size: 0.77rem;
   padding: 30px;
   width: 100%;
-  height: 70%;
+  height: 100%;
   grid-area: output;
   background-color: #656565;
   resize: none;
@@ -167,24 +158,35 @@ body {
   height: 30%;
 }
 
-.modalBG {
-  z-index: 1;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  background-color: rgba(72, 72, 72, 0.7);
-}
-
 .modal {
   display: flex;
-  flex-direction: column;
-  position: "fixed";
-  top: 0;
+  flex-direction: row;
+  position: "absolute";
+  bottom: 0;
   left: 0;
+  z-index: 10;
   background-color: #2a2a2a;
   margin: auto;
+}
+
+.footer {
+  display: flex;
+  margin-top: 10px;
+  font-size: 0.76rem;
+  color: #e1e1e1;
+}
+
+.footer p {
+  margin-right: auto;
+}
+
+a,
+a:hover,
+a:focus,
+a:visited {
+  color: #e1e1e1;
+  text-decoration: none;
+  font-weight: bold;
 }
 
 .rotate {

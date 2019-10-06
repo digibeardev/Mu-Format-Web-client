@@ -6,12 +6,10 @@ const Modal = props => {
   const context = useContext(Context);
   return (
     <div
-      className="modalBG"
-      style={{ display: context.visible ? "flex" : "none" }}
+      className="modal"
+      style={{ width, height, display: context.visible ? "flex" : "none" }}
     >
-      <div className="modal" style={{ width, height }}>
-        {children}
-      </div>
+      {children}
     </div>
   );
 };
