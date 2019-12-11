@@ -203,3 +203,9 @@ a:visited {
     transform: rotate(360deg);
   }
 }
+
+.ace_editor,
+.ace_text-input,
+.ace_editor div {
+  font-family: monospace !important;
+}

@@ -1,43 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useRef } from "react";
 import OpenBox from "../openmenu/open";
 import { Context } from "../context/Context";
-import FormatButtons from "../formatButtons/formatButtons";
-import Modal from "../modal/Modal";
-import Gear from "./gear.svg";
-const Input = () => {
-  const [timer, setTimer] = useState(null);
-  const context = useContext(Context);
-  const { setText, text, setOutput, visible, setVisible } = context;
+import formatter from "@digibear/mush-format";
 
-  useEffect(() => {
-    // clear timeout and set it again.
-    clearTimeout(timer);
-    let timeout = setTimeout(async () => {
-      setVisible(true);
-      const results = await fetch("https://mush-format-api.herokuapp.com", {
-        method: "post",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ text })
-      });
-      const data = await results.json();
-      setOutput(data.data.text);
-      setVisible(false);
-    }, 3000);
-    setTimer(timeout);
-  }, [text]);
+const Input = () => {
+  const edit = useRef();
+  const context = useContext(Context);
+
+  const { setText, text, setOutput } = context;
+
+  const handleChange = async e => setOutput(await formatter(e.target.value));
+
+  const handleKeyPress = e => {
+    if (e.keyCode === 9) {
+      e.preventDefault();
+      let s = edit.current.selectionStart;
+      edit.current.value =
+        edit.current.value.substring(0, edit.current.selectionStart) +
+        "  " +
+        edit.current.value.substring(edit.current.selectionEnd);
+      edit.current.selectionEnd = s + 1;
+    }
+  };
 
   return (
     <div className="inputContainer">
       <OpenBox />
       <textarea
+        ref={edit}
         id="input"
-        onChange={e => setText(e.target.value)}
-        value={context.text}
+        onKeyDown={handleKeyPress}
+        onChange={handleChange}
       ></textarea>
-      <FormatButtons />
     </div>
   );
 };
