@@ -38,7 +38,6 @@ function App() {
             <Nav />
             <div className="grid">
               <Input />
-              <Output />
             </div>
             <Footer />
           </Provider>

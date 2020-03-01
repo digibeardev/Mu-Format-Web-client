@@ -1,37 +1,49 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import OpenBox from "../openmenu/open";
 import { Context } from "../context/Context";
-import formatter from "@digibear/mush-format";
+import AceEditor from "react-ace";
+import { format } from "@digibear/mush-format";
+import "ace-builds/src-noconflict/mode-mushcode";
+import "ace-builds/src-noconflict/theme-monokai";
 
 const Input = () => {
   const edit = useRef();
+  const results = useRef();
   const context = useContext(Context);
 
-  const { setText, text, setOutput } = context;
+  const { setText, text, setOutput, output } = context;
 
-  const handleChange = async e => setOutput(await formatter(e.target.value));
+  const handleChange = async val => setText(val);
 
-  const handleKeyPress = e => {
-    if (e.keyCode === 9) {
-      e.preventDefault();
-      let s = edit.current.selectionStart;
-      edit.current.value =
-        edit.current.value.substring(0, edit.current.selectionStart) +
-        "  " +
-        edit.current.value.substring(edit.current.selectionEnd);
-      edit.current.selectionEnd = s + 1;
-    }
-  };
+  useEffect(() => {
+    const runOnce = async () => setOutput(await format(text));
+    runOnce();
+  }, [text]);
 
   return (
     <div className="inputContainer">
-      <OpenBox />
-      <textarea
+      <AceEditor
+        className="code"
         ref={edit}
-        id="input"
-        onKeyDown={handleKeyPress}
+        mode="mushcode"
+        theme="monokai"
+        name="input"
+        width="730px"
+        height="75vh"
+        value={text}
         onChange={handleChange}
-      ></textarea>
+      />
+
+      <AceEditor
+        className="code"
+        ref={results}
+        mode="mushcode"
+        theme="monokai"
+        name="output"
+        height="75vh"
+        value={output}
+        wrapEnabled
+      />
     </div>
   );
 };
